@@ -9,6 +9,7 @@ Lua Utils is an advanced Lua script executor for Minecraft 1.8.9 that allows you
 - `/lua stop` - Stop the currently running script
 - `/lua list` - List all available scripts
 - `/lua reload` - Force reload the Lua environment and clear all script caches
+- `/lua resetrender` - Clear all rendering effects (highlights) created by scripts
 
 ### Creating Scripts
 

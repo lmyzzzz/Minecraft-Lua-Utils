@@ -2,6 +2,7 @@ package com.luautils.lua.command;
 
 import com.luautils.lua.LuaUtils;
 import com.luautils.lua.lua.LuaManager;
+import com.luautils.lua.lua.functions.render.HighlightBlockFunction;
 import com.luautils.lua.util.ChatUtil;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
@@ -23,7 +24,7 @@ public class CommandLUA extends CommandBase {
     
     @Override
     public String getCommandUsage(ICommandSender sender) {
-        return "/lua execute <script_name> | /lua stop | /lua list | /lua reload";
+        return "/lua execute <script_name> | /lua stop | /lua list | /lua reload | /lua resetrender";
     }
     
     @Override
@@ -52,6 +53,9 @@ public class CommandLUA extends CommandBase {
                 break;
             case "reload":
                 reloadScripts(sender);
+                break;
+            case "resetrender":
+                resetRender(sender);
                 break;
             default:
                 ChatUtil.sendMessage(EnumChatFormatting.RED + "Unknown subcommand: " + subCommand);
@@ -114,6 +118,17 @@ public class CommandLUA extends CommandBase {
         ChatUtil.sendMessage(EnumChatFormatting.GREEN + "Lua environment reloaded. All script caches cleared.");
     }
     
+    private void resetRender(ICommandSender sender) {
+        // 清除所有高亮方块
+        int count = HighlightBlockFunction.clearAllHighlights();
+        
+        if (count > 0) {
+            ChatUtil.sendMessage(EnumChatFormatting.GREEN + "Successfully cleared " + count + " block highlights.");
+        } else {
+            ChatUtil.sendMessage(EnumChatFormatting.YELLOW + "No active block highlights to clear.");
+        }
+    }
+    
     @Override
     public boolean canCommandSenderUseCommand(ICommandSender sender) {
         return true;
@@ -122,7 +137,7 @@ public class CommandLUA extends CommandBase {
     @Override
     public List<String> addTabCompletionOptions(ICommandSender sender, String[] args, BlockPos pos) {
         if (args.length == 1) {
-            return getListOfStringsMatchingLastWord(args, "execute", "stop", "list", "reload");
+            return getListOfStringsMatchingLastWord(args, "execute", "stop", "list", "reload", "resetrender");
         } else if (args.length == 2 && args[0].equalsIgnoreCase("execute")) {
             File scriptDir = LuaUtils.getInstance().getScriptDir();
             File[] scripts = scriptDir.listFiles((dir, name) -> name.endsWith(".lua"));

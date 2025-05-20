@@ -6,7 +6,7 @@ import com.luautils.lua.lua.functions.utils.*;
 import com.luautils.lua.lua.functions.network.*;
 //import com.luautils.lua.lua.functions.world.*;
 //import com.luautils.lua.lua.functions.entity.*;
-//import com.luautils.lua.lua.functions.render.*;
+import com.luautils.lua.lua.functions.render.*;
 //import com.luautils.lua.lua.functions.algo.*;
 //import com.luautils.lua.lua.functions.events.*;
 //import com.luautils.lua.lua.functions.misc.*;
@@ -124,6 +124,9 @@ public class LuaManager {
         g.set("Sleep", new SleepFunction());
         g.set("SendLog", new SendLogFunction());
         g.set("SendChatMessage", new SendChatMessageFunction());
+        
+        // 渲染相关函数
+        g.set("HighlightBlock", new HighlightBlockFunction());
         
         // 添加其他必要的函数...
         
