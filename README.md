@@ -1,3 +1,5 @@
+!!THIS PROJECT IS CURRENTLY UNCOMPLETED.!!
+
 # Lua Utils
 
 Lua Utils is an advanced Lua script executor for Minecraft 1.8.9 that allows you to automate various in-game actions using Lua scripts.
