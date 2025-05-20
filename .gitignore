@@ -5,7 +5,8 @@ bin
 .metadata
 .classpath
 .project
-
+.cursor
+config
 # idea
 out
 *.ipr
