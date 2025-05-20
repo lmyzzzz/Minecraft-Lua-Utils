@@ -13,10 +13,14 @@ out
 *.iws
 *.iml
 .idea
-
+.cursor
+config
 # gradle
 build
-
+.cursor
+config
 # other
 eclipse
 run
+.cursor
+config
