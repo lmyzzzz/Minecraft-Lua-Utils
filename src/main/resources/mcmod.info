@@ -1,0 +1,16 @@
+[
+{
+  "modid": "luautils",
+  "name": "Lua Utils",
+  "description": "Advanced Lua script executor for Minecraft automation",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Developer"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+] 

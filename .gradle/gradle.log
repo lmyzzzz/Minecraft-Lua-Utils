@@ -1,0 +1,51 @@
+This mapping 'stable_20' was designed for MC 1.8.8! Use at your own peril.This mapping 'stable_20' was designed for MC 1.8.8! Use at your own peril.
+
+WARNING: You are using an unsupported version of ForgeGradle.
+Please consider upgrading to ForgeGradle 5 and helping in the efforts to get old versions working on the modern toolchain.
+See https://gist.github.com/TheCurle/fe7ad3ede188cbdd15c235cc75d52d4a for more info on contributing.
+#################################################
+         ForgeGradle 2.1.3-g6a7c715        
+  https://github.com/MinecraftForge/ForgeGradle  
+#################################################
+               Powered by MCP unknown               
+             http://modcoderpack.com             
+         by: Searge, ProfMobius, Fesh0r,         
+         R4wk, ZeuX, IngisKahn, bspkrs           
+#################################################
+:clean
+:deobfCompileDummyTask
+:getVersionJson
+:extractUserdev UP-TO-DATE
+:downloadClient SKIPPED
+:downloadServer SKIPPED
+:splitServerJar SKIPPED
+:mergeJars SKIPPED
+:applyBinaryPatches SKIPPED
+:deobfProvidedDummyTask
+:extractDependencyATs SKIPPED
+:extractMcpData SKIPPED
+:extractMcpMappings SKIPPED
+:genSrgs SKIPPED
+:deobfMcMCP SKIPPED
+:sourceApiJava
+:compileApiJava UP-TO-DATE
+:processApiResources UP-TO-DATE
+:apiClasses UP-TO-DATE
+:sourceMainJava
+:compileJava
+:processResources
+:classes
+:jar
+:sourceTestJava
+:compileTestJava UP-TO-DATE
+:processTestResources UP-TO-DATE
+:testClasses UP-TO-DATE
+:test UP-TO-DATE
+:reobfJar
+:assemble
+:check UP-TO-DATE
+:build
+
+BUILD SUCCESSFUL
+
+Total time: 12.294 secs
