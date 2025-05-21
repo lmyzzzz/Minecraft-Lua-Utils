@@ -224,7 +224,7 @@ public class HighlightBlockFunction extends VarArgFunction {
                     HighlightData data = entry.getValue();
                     
                     // If block is too far away, remove it from highlights
-                    if (Minecraft.getMinecraft().thePlayer.getDistanceSq(data.pos) > 4096) { // 64 blocks squared
+                    if (Minecraft.getMinecraft().thePlayer.getDistanceSq(data.pos) > 262144) { // 512 blocks squared
                         it.remove();
                     }
                 }
