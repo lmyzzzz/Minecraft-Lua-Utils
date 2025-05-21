@@ -191,6 +191,74 @@ public class RenderUtil {
         }
     }
     
+    /**
+     * Draws a 3D line between two points in the world
+     * 
+     * @param startX X coordinate of the start point
+     * @param startY Y coordinate of the start point
+     * @param startZ Z coordinate of the start point
+     * @param endX X coordinate of the end point
+     * @param endY Y coordinate of the end point
+     * @param endZ Z coordinate of the end point
+     * @param color Color of the line
+     * @param width Width of the line in pixels
+     */
+    public static void drawLine(double startX, double startY, double startZ, 
+                                double endX, double endY, double endZ, 
+                                Color color, float width) {
+        Minecraft mc = Minecraft.getMinecraft();
+        
+        if (mc.theWorld == null) return;
+        
+        // Calculate render positions
+        double renderStartX = startX - mc.getRenderManager().viewerPosX;
+        double renderStartY = startY - mc.getRenderManager().viewerPosY;
+        double renderStartZ = startZ - mc.getRenderManager().viewerPosZ;
+        
+        double renderEndX = endX - mc.getRenderManager().viewerPosX;
+        double renderEndY = endY - mc.getRenderManager().viewerPosY;
+        double renderEndZ = endZ - mc.getRenderManager().viewerPosZ;
+        
+        // Set up OpenGL
+        GlStateManager.pushMatrix();
+        GlStateManager.disableTexture2D();
+        GlStateManager.enableBlend();
+        GlStateManager.disableLighting();
+        GlStateManager.disableDepth();
+        GlStateManager.depthMask(false);
+        GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+        GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
+        
+        // Set color
+        GlStateManager.color(
+            color.getRed() / 255f,
+            color.getGreen() / 255f,
+            color.getBlue() / 255f,
+            color.getAlpha() / 255f
+        );
+        
+        // Set line width
+        GL11.glLineWidth(width);
+        
+        // Draw the line
+        Tessellator tessellator = Tessellator.getInstance();
+        WorldRenderer renderer = tessellator.getWorldRenderer();
+        
+        renderer.begin(GL11.GL_LINES, DefaultVertexFormats.POSITION);
+        renderer.pos(renderStartX, renderStartY, renderStartZ).endVertex();
+        renderer.pos(renderEndX, renderEndY, renderEndZ).endVertex();
+        tessellator.draw();
+        
+        // Restore GL state
+        GL11.glLineWidth(1.0F);
+        GlStateManager.enableDepth();
+        GlStateManager.depthMask(true);
+        GlStateManager.enableTexture2D();
+        GlStateManager.disableBlend();
+        GlStateManager.enableLighting();
+        GlStateManager.popMatrix();
+    }
+    
     public enum RenderType {
         LINE,
         FILL

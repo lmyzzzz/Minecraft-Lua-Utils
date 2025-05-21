@@ -3,6 +3,7 @@ package com.luautils.lua.command;
 import com.luautils.lua.LuaUtils;
 import com.luautils.lua.lua.LuaManager;
 import com.luautils.lua.lua.functions.render.HighlightBlockFunction;
+import com.luautils.lua.lua.functions.render.RenderLineFunction;
 import com.luautils.lua.util.ChatUtil;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
@@ -120,12 +121,27 @@ public class CommandLUA extends CommandBase {
     
     private void resetRender(ICommandSender sender) {
         // 清除所有高亮方块
-        int count = HighlightBlockFunction.clearAllHighlights();
+        int blockCount = HighlightBlockFunction.clearAllHighlights();
         
-        if (count > 0) {
-            ChatUtil.sendMessage(EnumChatFormatting.GREEN + "Successfully cleared " + count + " block highlights.");
+        // 清除所有线条
+        int lineCount = RenderLineFunction.clearAllLines();
+        
+        int totalCount = blockCount + lineCount;
+        
+        if (totalCount > 0) {
+            String message = "Successfully cleared " + totalCount + " render elements";
+            if (blockCount > 0 && lineCount > 0) {
+                message += " (" + blockCount + " blocks, " + lineCount + " lines)";
+            } else if (blockCount > 0) {
+                message += " (all blocks)";
+            } else if (lineCount > 0) {
+                message += " (all lines)";
+            }
+            message += ".";
+            
+            ChatUtil.sendMessage(EnumChatFormatting.GREEN + message);
         } else {
-            ChatUtil.sendMessage(EnumChatFormatting.YELLOW + "No active block highlights to clear.");
+            ChatUtil.sendMessage(EnumChatFormatting.YELLOW + "No active render elements to clear.");
         }
     }
     

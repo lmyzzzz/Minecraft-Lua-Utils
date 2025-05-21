@@ -2,6 +2,7 @@ package com.luautils.lua.lua.functions.utils;
 
 import com.luautils.lua.LuaUtils;
 import com.luautils.lua.util.ChatUtil;
+import net.minecraft.util.EnumChatFormatting;
 import org.luaj.vm2.LuaString;
 import org.luaj.vm2.LuaValue;
 import org.luaj.vm2.Varargs;
@@ -18,12 +19,7 @@ public class SendLogFunction extends VarArgFunction {
             for (int i = 1; i <= args.narg(); i++) {
                 LuaValue arg = args.arg(i);
                 
-                // Add space between arguments, but not before the first one
-                if (i > 1) {
-                    message.append(" ");
-                }
-                
-                // Don't add quotes around strings, just append the value
+               
                 message.append(arg.tojstring());
             }
             
@@ -31,7 +27,7 @@ public class SendLogFunction extends VarArgFunction {
             
             // Run on main thread to safely interact with Minecraft
             LuaUtils.getInstance().getLuaManager().runOnMainThread(() -> {
-                ChatUtil.sendMessage("[LuaUtils] " + finalMessage);
+                ChatUtil.sendMessage(EnumChatFormatting.BLUE + "[LuaUtils]" + EnumChatFormatting.RESET + " " + finalMessage);
             });
             
             return LuaValue.TRUE;

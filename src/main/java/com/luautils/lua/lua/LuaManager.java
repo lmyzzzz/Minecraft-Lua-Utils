@@ -4,7 +4,7 @@ import com.luautils.lua.lua.functions.*;
 import com.luautils.lua.lua.functions.player.*;
 import com.luautils.lua.lua.functions.utils.*;
 import com.luautils.lua.lua.functions.network.*;
-//import com.luautils.lua.lua.functions.world.*;
+import com.luautils.lua.lua.functions.world.*;
 //import com.luautils.lua.lua.functions.entity.*;
 import com.luautils.lua.lua.functions.render.*;
 //import com.luautils.lua.lua.functions.algo.*;
@@ -127,6 +127,11 @@ public class LuaManager {
         
         // 渲染相关函数
         g.set("HighlightBlock", new HighlightBlockFunction());
+        g.set("RenderLine", new RenderLineFunction());
+        g.set("ClearRender", new ClearRenderFunction());
+        
+        // 世界相关函数
+        g.set("GetBlock", new GetBlockFunction());
         
         // 添加其他必要的函数...
         
