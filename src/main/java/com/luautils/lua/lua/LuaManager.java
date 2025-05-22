@@ -7,7 +7,7 @@ import com.luautils.lua.lua.functions.network.*;
 import com.luautils.lua.lua.functions.world.*;
 //import com.luautils.lua.lua.functions.entity.*;
 import com.luautils.lua.lua.functions.render.*;
-//import com.luautils.lua.lua.functions.algo.*;
+import com.luautils.lua.lua.functions.algo.*;
 //import com.luautils.lua.lua.functions.events.*;
 //import com.luautils.lua.lua.functions.misc.*;
 //import com.luautils.lua.lua.functions.items.*;
@@ -132,6 +132,10 @@ public class LuaManager {
         
         // 世界相关函数
         g.set("GetBlock", new GetBlockFunction());
+        
+        // 算法相关函数
+        g.set("CalcViewPos", new CalcViewPosFunction());
+        g.set("tb", new TbFunction());
         
         // 添加其他必要的函数...
         
